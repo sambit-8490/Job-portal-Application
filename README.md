@@ -74,7 +74,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm run dev
    ```
-7. Open your browser and navigate to `http://localhost:5173` to view the app.
+7. Open your browser and navigate to `http://localhost:5173 or 3000` to view the app.
 
 ## Contributing
 
