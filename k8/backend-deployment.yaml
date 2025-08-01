@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: job-backend
+  template:
+    metadata:
+      labels:
+        app: job-backend
+    spec:
+      containers:
+        - name: backend
+          image: sambitmass/demo:job-backend
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - configMapRef:
+                name: job-config
+            - secretRef:
+                name: job-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: job-backend
+spec:
+  selector:
+    app: job-backend
+  ports:
+    - port: 4000
+      targetPort: 4000
+  type: ClusterIP

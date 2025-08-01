@@ -1,0 +1,23 @@
+services:
+  backend:
+    image: sambitmass/demo:job-backend
+    container_name: job-backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "4000:4000"
+    networks:
+      - jobnet
+
+  frontend:
+    image: sambitmass/demo:job-frontend
+    container_name: job-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - jobnet
+
+networks:
+  jobnet:
